@@ -34,7 +34,7 @@ public class A_Star : MonoBehaviour
     }
     private void Start()
     {
-        RecalculatePath();
+        //RecalculatePath();
     }
     private void RecalculatePath()
     {

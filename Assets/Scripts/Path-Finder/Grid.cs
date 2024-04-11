@@ -13,13 +13,23 @@ public class Grid : MonoBehaviour
     [SerializeField] private bool drawGrid;
     int gridSizeX, gridSizeY;
     public float nodeDiameter;
+    public bool recalculate;
     private void OnValidate()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.z / nodeDiameter);
+        gridWorldSize = transform.localScale;
     }
 
+    private void Update()
+    {
+        if (recalculate)
+        {
+            recalculate = false;
+            CreateGrid();
+        }
+    }
     void Awake()
     {
         CreateGrid();
