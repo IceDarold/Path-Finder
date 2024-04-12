@@ -18,29 +18,29 @@ namespace Generate
             this.maze = maze;
         }
         /// <summary>
-        /// Список начальных позиций глейдов в которых находятся клетки отображаемого лабиринта
+        /// РЎРїРёСЃРѕРє РЅР°С‡Р°Р»СЊРЅС‹С… РїРѕР·РёС†РёР№ РіР»РµР№РґРѕРІ РІ РєРѕС‚РѕСЂС‹С… РЅР°С…РѕРґСЏС‚СЃСЏ РєР»РµС‚РєРё РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р°
         /// </summary>
         public Vector2Int[] gleidStartPositions { get => startPositions; private set => startPositions = value; }
         private Vector2Int[] startPositions;
         /// <summary>
-        /// Список размеров глейдов в которых находятся клетки отображаемого лабиринта
+        /// РЎРїРёСЃРѕРє СЂР°Р·РјРµСЂРѕРІ РіР»РµР№РґРѕРІ РІ РєРѕС‚РѕСЂС‹С… РЅР°С…РѕРґСЏС‚СЃСЏ РєР»РµС‚РєРё РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р°
         /// </summary>
         public Vector2Int[] gleidsSizes { get => _gleidsSizes; private set => _gleidsSizes = value; }
         private Vector2Int[] _gleidsSizes;
         /// <summary>
-        /// Генерирует глейды в лабиринте maze. Вызывать только в самом начале, когда глейды еще не сгенерированы. После обновления лабиринта вызывать UpdateGleids для более высокой
-        /// производительности
+        /// Р“РµРЅРµСЂРёСЂСѓРµС‚ РіР»РµР№РґС‹ РІ Р»Р°Р±РёСЂРёРЅС‚Рµ maze. Р’С‹Р·С‹РІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ СЃР°РјРѕРј РЅР°С‡Р°Р»Рµ, РєРѕРіРґР° РіР»РµР№РґС‹ РµС‰Рµ РЅРµ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅС‹. РџРѕСЃР»Рµ РѕР±РЅРѕРІР»РµРЅРёСЏ Р»Р°Р±РёСЂРёРЅС‚Р° РІС‹Р·С‹РІР°С‚СЊ UpdateGleids РґР»СЏ Р±РѕР»РµРµ РІС‹СЃРѕРєРѕР№
+        /// РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
         /// </summary>
-        /// <param name="maze">Лабиринт</param>
+        /// <param name="maze">Р›Р°Р±РёСЂРёРЅС‚</param>
         public void GenerateGleids()
         {
             GetGleidsStartInfo(maze.mazeArray, out startPositions, out _gleidsSizes);
             startPositions.ToList().ForEach(pos => Debug.Log(pos));
             for (int i = 0; i < startPositions.Length; i++)
             {
-                //-1 потому что для того, чтобы создать нижнюю стену глейда нужно поставить стену у всех клеток, находящихся под глейдом,
-                //т.к. у клетки есть только topWall и leftWall
-                //+1 для создания свободного прохода вокруг глейда
+                //-1 РїРѕС‚РѕРјСѓ С‡С‚Рѕ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРѕР·РґР°С‚СЊ РЅРёР¶РЅСЋСЋ СЃС‚РµРЅСѓ РіР»РµР№РґР° РЅСѓР¶РЅРѕ РїРѕСЃС‚Р°РІРёС‚СЊ СЃС‚РµРЅСѓ Сѓ РІСЃРµС… РєР»РµС‚РѕРє, РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РїРѕРґ РіР»РµР№РґРѕРј,
+                //С‚.Рє. Сѓ РєР»РµС‚РєРё РµСЃС‚СЊ С‚РѕР»СЊРєРѕ topWall Рё leftWall
+                //+1 РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЃРІРѕР±РѕРґРЅРѕРіРѕ РїСЂРѕС…РѕРґР° РІРѕРєСЂСѓРі РіР»РµР№РґР°
                 for (int y = -1; y < gleidsSizes[i].y + 1; y++)
                 {
                     for (int x = -1; x < gleidsSizes[i].x + 1; x++)
@@ -55,45 +55,45 @@ namespace Generate
             }
         }
         /// <summary>
-        /// Обновляет глейды в лабиринте
+        /// РћР±РЅРѕРІР»СЏРµС‚ РіР»РµР№РґС‹ РІ Р»Р°Р±РёСЂРёРЅС‚Рµ
         /// </summary>
-        /// <param name="transformDistance">Расстояние на которые сместился лабиринт относительно предыдущего обновления</param>
-        public void UpdateGleids(Vector2Int transformDistance)//Сместить
+        /// <param name="transformDistance">Р Р°СЃСЃС‚РѕСЏРЅРёРµ РЅР° РєРѕС‚РѕСЂС‹Рµ СЃРјРµСЃС‚РёР»СЃСЏ Р»Р°Р±РёСЂРёРЅС‚ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РѕР±РЅРѕРІР»РµРЅРёСЏ</param>
+        public void UpdateGleids(Vector2Int transformDistance)//РЎРјРµСЃС‚РёС‚СЊ
         {
 
         }
         /// <summary>
-        /// Возвращает позиции начал и размеры глейдов у которых хотя бы одна клетка находится в отображаемом лабиринте
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїРѕР·РёС†РёРё РЅР°С‡Р°Р» Рё СЂР°Р·РјРµСЂС‹ РіР»РµР№РґРѕРІ Сѓ РєРѕС‚РѕСЂС‹С… С…РѕС‚СЏ Р±С‹ РѕРґРЅР° РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРј Р»Р°Р±РёСЂРёРЅС‚Рµ
         /// </summary>
         /// <param name="mazeArray"></param>
-        /// <param name="startPositions">Массив позиций начал глейдов</param>
-        /// <param name="sizes">Массив размеров глейдов</param>
+        /// <param name="startPositions">РњР°СЃСЃРёРІ РїРѕР·РёС†РёР№ РЅР°С‡Р°Р» РіР»РµР№РґРѕРІ</param>
+        /// <param name="sizes">РњР°СЃСЃРёРІ СЂР°Р·РјРµСЂРѕРІ РіР»РµР№РґРѕРІ</param>
         private void GetGleidsStartInfo(Cell[,] mazeArray, out Vector2Int[] startPositions, out Vector2Int[] sizes)
         {
             List<Vector2Int> positionsList = new List<Vector2Int>();
             List<Vector2Int> sizesList = new List<Vector2Int>();
-            //Получаем либо 1, либо -1
+            //РџРѕР»СѓС‡Р°РµРј Р»РёР±Рѕ 1, Р»РёР±Рѕ -1
             //int multiplerX = mazeArray[0, mazeArray.GetLength(1) - 1].positionInMaze.x / Mathf.Abs(mazeArray[0, mazeArray.GetLength(1) - 1].positionInMaze.x);
            // int multiplerY = mazeArray[mazeArray.GetLength(0) - 1, 0].positionInMaze.y / Mathf.Abs(mazeArray[mazeArray.GetLength(0) - 1, 0].positionInMaze.y);
-            //Находим позицию начала глейда, ближайшего к началу лабиринта с наименьшими координатами
+            //РќР°С…РѕРґРёРј РїРѕР·РёС†РёСЋ РЅР°С‡Р°Р»Р° РіР»РµР№РґР°, Р±Р»РёР¶Р°Р№С€РµРіРѕ Рє РЅР°С‡Р°Р»Сѓ Р»Р°Р±РёСЂРёРЅС‚Р° СЃ РЅР°РёРјРµРЅСЊС€РёРјРё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё
 
             Vector2Int startPositionGleidChangesCount = new Vector2Int(mazeArray[0, 0].positionInMaze.x / gleidSettings.gleidChange.x
            // Vector2Int startPosition = new Vector2Int(mazeArray[0, 0].positionInMaze.x / gleidSettings.gleidChange.x
                 * gleidSettings.gleidChange.x, mazeArray[0, 0].positionInMaze.y / gleidSettings.gleidChange.y
                 * gleidSettings.gleidChange.y);
-            //Если начальная позиция оказалась < 0, то стартовой позиции не будет хватать одного gleidChange.x/.y. Возьмем например x = -13. 
-            //-13 / 10(gleidChange.x) = -1, а должно быть -2
+            //Р•СЃР»Рё РЅР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ РѕРєР°Р·Р°Р»Р°СЃСЊ < 0, С‚Рѕ СЃС‚Р°СЂС‚РѕРІРѕР№ РїРѕР·РёС†РёРё РЅРµ Р±СѓРґРµС‚ С…РІР°С‚Р°С‚СЊ РѕРґРЅРѕРіРѕ gleidChange.x/.y. Р’РѕР·СЊРјРµРј РЅР°РїСЂРёРјРµСЂ x = -13. 
+            //-13 / 10(gleidChange.x) = -1, Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ -2
             //startPosition.x += gleidSettings.gleidChange.x * (mazeArray[0, 0].positionInMaze.x < 0 ? -1 : 0);
             //startPosition.y += gleidSettings.gleidChange.y * (mazeArray[0, 0].positionInMaze.y < 0 ? -1 : 0);
-            //Позиция, которую мы изменяем и проверяем
-            //Ищем начала и размеры всех глейдов в отображаемой области лабиринта
-            //Пока искомая позиция не вышла за пределы отображаемого лабиринта по y
+            //РџРѕР·РёС†РёСЏ, РєРѕС‚РѕСЂСѓСЋ РјС‹ РёР·РјРµРЅСЏРµРј Рё РїСЂРѕРІРµСЂСЏРµРј
+            //РС‰РµРј РЅР°С‡Р°Р»Р° Рё СЂР°Р·РјРµСЂС‹ РІСЃРµС… РіР»РµР№РґРѕРІ РІ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕР№ РѕР±Р»Р°СЃС‚Рё Р»Р°Р±РёСЂРёРЅС‚Р°
+            //РџРѕРєР° РёСЃРєРѕРјР°СЏ РїРѕР·РёС†РёСЏ РЅРµ РІС‹С€Р»Р° Р·Р° РїСЂРµРґРµР»С‹ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РїРѕ y
             /*while (nearestPosition.y <= mazeArray[mazeArray.GetLength(0) - 1, 0].positionInMaze.y)
             {
-                //Пока искомая позиция не вышла за пределы отображаемого лабиринта по x
+                //РџРѕРєР° РёСЃРєРѕРјР°СЏ РїРѕР·РёС†РёСЏ РЅРµ РІС‹С€Р»Р° Р·Р° РїСЂРµРґРµР»С‹ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РїРѕ x
                 while (nearestPosition.x <= mazeArray[0, mazeArray.GetLength(1) - 1].positionInMaze.x)
                 {
-                    //Если мы генерируем каждый глейд или рандом победил добавляем в списки информацию о новом глейде
+                    //Р•СЃР»Рё РјС‹ РіРµРЅРµСЂРёСЂСѓРµРј РєР°Р¶РґС‹Р№ РіР»РµР№Рґ РёР»Рё СЂР°РЅРґРѕРј РїРѕР±РµРґРёР» РґРѕР±Р°РІР»СЏРµРј РІ СЃРїРёСЃРєРё РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРѕРІРѕРј РіР»РµР№РґРµ
                     if (!gleidSettings.isRandomAppear || RandomValuesGenerator.RandomChoice(nearestPosition, generateData.seed, RandomValuesGenerator.GenBoolType.gleidExistence, mazeArray.GetLength(1)))
                     {
                         sizesList.Add(RandomValuesGenerator.RandomVector2Int(nearestPosition, gleidSettings.minGleidSize, gleidSettings.maxGleidSize, generateData,
@@ -114,7 +114,7 @@ namespace Generate
                 for (int x = 0; x < maxX; x++)
                 {
                     Vector2Int gleidPos = /*startPosition + */new Vector2Int(x * gleidSettings.gleidChange.x, y * gleidSettings.gleidChange.y/* * multiplerY*/);
-                    //Если мы генерируем каждый глейд или рандом победил добавляем в списки информацию о новом глейде
+                    //Р•СЃР»Рё РјС‹ РіРµРЅРµСЂРёСЂСѓРµРј РєР°Р¶РґС‹Р№ РіР»РµР№Рґ РёР»Рё СЂР°РЅРґРѕРј РїРѕР±РµРґРёР» РґРѕР±Р°РІР»СЏРµРј РІ СЃРїРёСЃРєРё РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРѕРІРѕРј РіР»РµР№РґРµ
                     if (!gleidSettings.isRandomAppear || RandomValuesGenerator.RandomChoice(gleidPos, generateData.seed, RandomValuesGenerator.GenBoolType.gleidExistence, mazeArray.GetLength(1)))
                     {
                         sizesList.Add(RandomValuesGenerator.RandomVector2Int(gleidPos, gleidSettings.minGleidSize, gleidSettings.maxGleidSize, generateData,
@@ -127,42 +127,42 @@ namespace Generate
             sizes = sizesList.ToArray();
         }
         /// <summary>
-        /// Удаляет клетки относительно их позиции в лабиринте
+        /// РЈРґР°Р»СЏРµС‚ РєР»РµС‚РєРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РёС… РїРѕР·РёС†РёРё РІ Р»Р°Р±РёСЂРёРЅС‚Рµ
         /// </summary>
         /// <param name="cell"></param>
-        /// <param name="positionInGleid">Позиция клетки в лабиринте</param>
-        /// <param name="gleidSize">Размер глейда</param>
+        /// <param name="positionInGleid">РџРѕР·РёС†РёСЏ РєР»РµС‚РєРё РІ Р»Р°Р±РёСЂРёРЅС‚Рµ</param>
+        /// <param name="gleidSize">Р Р°Р·РјРµСЂ РіР»РµР№РґР°</param>
         private void RemoveWalls(Cell cell, Vector2Int positionInGleid, Vector2Int gleidSize)
         {
-            //Если клетка самая левая в глейде или правее его и при этом находится в пределах глейда по y, включаем левую стену
+            //Р•СЃР»Рё РєР»РµС‚РєР° СЃР°РјР°СЏ Р»РµРІР°СЏ РІ РіР»РµР№РґРµ РёР»Рё РїСЂР°РІРµРµ РµРіРѕ Рё РїСЂРё СЌС‚РѕРј РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РіР»РµР№РґР° РїРѕ y, РІРєР»СЋС‡Р°РµРј Р»РµРІСѓСЋ СЃС‚РµРЅСѓ
             if ((positionInGleid.x == 0 || positionInGleid.x == gleidSize.x) && positionInGleid.y >= 0 &&
                 positionInGleid.y <= gleidSize.y - 1)
             {
                 cell.leftWall = true;
             }
-            //Если клетка под глейдом или самая правая в глейде и при этом находится в пределах глейда по x, включаем верхнюю стену
+            //Р•СЃР»Рё РєР»РµС‚РєР° РїРѕРґ РіР»РµР№РґРѕРј РёР»Рё СЃР°РјР°СЏ РїСЂР°РІР°СЏ РІ РіР»РµР№РґРµ Рё РїСЂРё СЌС‚РѕРј РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РіР»РµР№РґР° РїРѕ x, РІРєР»СЋС‡Р°РµРј РІРµСЂС…РЅСЋСЋ СЃС‚РµРЅСѓ
             if ((positionInGleid.y == -1 || positionInGleid.y == gleidSize.y - 1) && positionInGleid.x >= 0 && positionInGleid.x <= gleidSize.x - 1)
             {
                 cell.topWall = true;
             }
-            //Если клетка находится внутри глейда, но ниже самой верхней строчки, удаляем верхнюю стену
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІРЅСѓС‚СЂРё РіР»РµР№РґР°, РЅРѕ РЅРёР¶Рµ СЃР°РјРѕР№ РІРµСЂС…РЅРµР№ СЃС‚СЂРѕС‡РєРё, СѓРґР°Р»СЏРµРј РІРµСЂС…РЅСЋСЋ СЃС‚РµРЅСѓ
             if (positionInGleid.x >= 0 && positionInGleid.x <= gleidSize.x - 1 && positionInGleid.y >= 0 && positionInGleid.y <= gleidSize.y - 2)
             {
                 cell.topWall = false;
             }
-            //Если клетка находится в глейде, но выше, самой левой строчки, удаляем левую стену
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІ РіР»РµР№РґРµ, РЅРѕ РІС‹С€Рµ, СЃР°РјРѕР№ Р»РµРІРѕР№ СЃС‚СЂРѕС‡РєРё, СѓРґР°Р»СЏРµРј Р»РµРІСѓСЋ СЃС‚РµРЅСѓ
             if (positionInGleid.x >= 1 && positionInGleid.x <= gleidSize.x - 1 && positionInGleid.y >= 0 && positionInGleid.y <= gleidSize.y - 1)
             {
                 cell.leftWall = false;
             }
             if (gleidSettings.isDeleteBroad)
             {
-                //Если клетка слева или справа от глейда и при этом находится в пределах глейда по y, удаляем верхнюю стену
+                //Р•СЃР»Рё РєР»РµС‚РєР° СЃР»РµРІР° РёР»Рё СЃРїСЂР°РІР° РѕС‚ РіР»РµР№РґР° Рё РїСЂРё СЌС‚РѕРј РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РіР»РµР№РґР° РїРѕ y, СѓРґР°Р»СЏРµРј РІРµСЂС…РЅСЋСЋ СЃС‚РµРЅСѓ
                 if ((positionInGleid.x == -1 || positionInGleid.x == gleidSize.x) && positionInGleid.y >= -1 && positionInGleid.y <= gleidSize.y - 1)
                 {
                     cell.topWall = false;
                 }
-                //Если клетка снизу или сверху от глейда и при этом находится в пределах глейда по x, удаляем левую стену
+                //Р•СЃР»Рё РєР»РµС‚РєР° СЃРЅРёР·Сѓ РёР»Рё СЃРІРµСЂС…Сѓ РѕС‚ РіР»РµР№РґР° Рё РїСЂРё СЌС‚РѕРј РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РіР»РµР№РґР° РїРѕ x, СѓРґР°Р»СЏРµРј Р»РµРІСѓСЋ СЃС‚РµРЅСѓ
                 if ((positionInGleid.y == -1 || positionInGleid.y == gleidSize.y) && positionInGleid.x >= 0 && positionInGleid.x <= gleidSize.x)
                 {
                     cell.leftWall = false;

@@ -35,13 +35,13 @@ namespace Generate.Random
             return NumGenerator.Gen(sumVector.x, sumVector.y, seed, mazeSizeX) % cellsPositions.Length;
         }
         /// <summary>
-        /// Вычисляет уникальный идентификатор для любого цело-комплексного числа или проще говоря для любого Vector2Int
+        /// Р’С‹С‡РёСЃР»СЏРµС‚ СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РґР»СЏ Р»СЋР±РѕРіРѕ С†РµР»Рѕ-РєРѕРјРїР»РµРєСЃРЅРѕРіРѕ С‡РёСЃР»Р° РёР»Рё РїСЂРѕС‰Рµ РіРѕРІРѕСЂСЏ РґР»СЏ Р»СЋР±РѕРіРѕ Vector2Int
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
         public static int CalculateUniqueIDFor2DVector(Vector2Int vector)
         {
-            //Это пока просто балванка. Оно не работает как надо. Нужно доделать
+            //Р­С‚Рѕ РїРѕРєР° РїСЂРѕСЃС‚Рѕ Р±Р°Р»РІР°РЅРєР°. РћРЅРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ РєР°Рє РЅР°РґРѕ. РќСѓР¶РЅРѕ РґРѕРґРµР»Р°С‚СЊ
             return 20 * vector.y + vector.x;
         }
         public static Vector2Int RandomVector2Int(Vector2Int positionInMaze, Vector2Int minValue, Vector2Int maxValue, GenerateData generateData, GenVectorType genVectorType)

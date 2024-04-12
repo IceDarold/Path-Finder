@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c303879c7b43f7478885c0b70f21a99, type: 3}
   m_Name: GleidSettings
   m_EditorClassIdentifier: 
-  minGleidSize: {x: 20, y: 20}
-  maxGleidSize: {x: 20, y: 20}
-  gleidChange: {x: 50, y: 59}
-  addRange: {x: 10, y: 0}
+  minGleidSize: {x: 25, y: 25}
+  maxGleidSize: {x: 25, y: 25}
+  gleidChange: {x: 50, y: 50}
+  addRange: {x: 0, y: 0}
   isDeleteBroad: 0
   isRandomAppear: 1
   isRandomAdd: 1

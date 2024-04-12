@@ -58,7 +58,7 @@ namespace Generate
             cell.cellPref.gleid = gleid;
             cell.cellPref.positionInGleid = positionInGleid;
             return isFits && gleidsSettings.isRandomAppear ? RandomChoice(gleid.StartPosition, maze.seed, GenType.checkGleid, maze._mazeSize.x) : isFits;
-            //cell.cellPref.randomAdd = randomAdd;//Для теста
+            //cell.cellPref.randomAdd = randomAdd;//Р”Р»СЏ С‚РµСЃС‚Р°
         }
 
         private void RemoveWalls(Cell cell, Vector2Int myPositionInGleid, Gleid gleid)
@@ -75,7 +75,7 @@ namespace Generate
             cell.cellPref.GetComponent<MeshRenderer>().material.color = Color.red;
             cell.cellPref._leftWall.SetActive(false);
             cell.cellPref._topWall.SetActive(false);
-            //Если клетка самая левая
+            //Р•СЃР»Рё РєР»РµС‚РєР° СЃР°РјР°СЏ Р»РµРІР°СЏ
             if (myPositionInGleid.x == 0)
             {
                 cell.cellPref._leftWall.SetActive(true);
@@ -84,17 +84,17 @@ namespace Generate
                     cell.cellPref.GetComponent<MeshRenderer>().material.color = Color.green;
                 }
             }
-            //Если клетка самая правая
+            //Р•СЃР»Рё РєР»РµС‚РєР° СЃР°РјР°СЏ РїСЂР°РІР°СЏ
             if (myPositionInGleid.x == gleid.GleidSize.x)
             {
                 cell.cellPref._leftWall.SetActive(true);
             }
-            //Если клетка самая верхняя
+            //Р•СЃР»Рё РєР»РµС‚РєР° СЃР°РјР°СЏ РІРµСЂС…РЅСЏСЏ
             if (myPositionInGleid.y == gleid.GleidSize.y - 1)
             {
                 cell.cellPref._topWall.SetActive(true);
             }
-            //Если клетка самая нижняя
+            //Р•СЃР»Рё РєР»РµС‚РєР° СЃР°РјР°СЏ РЅРёР¶РЅСЏСЏ
             if (myPositionInGleid.y == -1)
             {
                 cell.cellPref.GetComponent<MeshRenderer>().material.color = Color.blue;
@@ -133,7 +133,7 @@ namespace Generate
         {
             Vector2Int lastGleidPosition = SearchNearGleid(_positionInMaze);
             gleid = new Gleid(SearchNearGleid(_positionInMaze + new Vector2Int(lastGleidPosition.x + movementDirection.x, lastGleidPosition.y + movementDirection.y)), gleidsSettings, maze);
-            //Если клетка находится в глейде
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІ РіР»РµР№РґРµ
             if (_positionInMaze.x >= gleid.StartPosition.x && _positionInMaze.y >= gleid.StartPosition.y && _positionInMaze.x <= gleid.StartPosition.x + gleid.GleidSize.x && _positionInMaze.y <= nearestGleidPosition.y + gleidSize.y)
             {
                 positionInGleid = new Vector2Int(_positionInMaze.x - gleid.StartPosition.x, _positionInMaze.y - gleid.StartPosition.y);
@@ -144,12 +144,12 @@ namespace Generate
         {
             if (count == 20)
             {
-                Debug.LogError("Перебор!");
+                Debug.LogError("РџРµСЂРµР±РѕСЂ!");
                 Debug.Log($"{movementDirection}, {_positionInMaze}");
                 alreadyCheckList.ForEach(item =>
                 {
                     Vector2Int _comingPos = alreadyCheckList.IndexOf(item) == 0 ? Vector2Int.zero : alreadyCheckList[alreadyCheckList.IndexOf(item) - 1];
-                    Debug.Log($"Шаг: {item} Позиция глейда: {new Vector2Int((_positionInMaze.x / gleidsSettings.gleidChange.x + _comingPos.x + movementDirection.x) * gleidsSettings.gleidChange.x, (_positionInMaze.y / gleidChange.y + _comingPos.x + movementDirection.y) * gleidChange.y)}"
+                    Debug.Log($"РЁР°Рі: {item} РџРѕР·РёС†РёСЏ РіР»РµР№РґР°: {new Vector2Int((_positionInMaze.x / gleidsSettings.gleidChange.x + _comingPos.x + movementDirection.x) * gleidsSettings.gleidChange.x, (_positionInMaze.y / gleidChange.y + _comingPos.x + movementDirection.y) * gleidChange.y)}"
                 );
                 });
             }
@@ -158,18 +158,18 @@ namespace Generate
             Vector2Int _comingPosition = alreadyCheckList.Count == 1 ? Vector2Int.zero : alreadyCheckList[alreadyCheckList.Count - 2];
 
             gleid = new Gleid(SearchNearGleid(_positionInMaze + new Vector2Int(_comingPosition.x + movementDirection.x, _comingPosition.y + movementDirection.y)), gleidsSettings, maze);
-            //Если клетка находится в глейде
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІ РіР»РµР№РґРµ
             if (_positionInMaze.x >= gleid.StartPosition.x && _positionInMaze.y >= gleid.StartPosition.y && _positionInMaze.x <= gleid.StartPosition.x + gleid.GleidSize.x && _positionInMaze.y <= nearestGleidPosition.y + gleidSize.y)
             {
                 positionInGleid = new Vector2Int(_positionInMaze.x - gleid.StartPosition.x, _positionInMaze.y - gleid.StartPosition.y);
                 return true;
             }
-            //Если клетка находится левее от начала глейда
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ Р»РµРІРµРµ РѕС‚ РЅР°С‡Р°Р»Р° РіР»РµР№РґР°
             if (_positionInMaze.x < gleid.StartPosition.x && !alreadyCheckList.Contains(alreadyCheckList[alreadyCheckList.Count - 1] + Vector2Int.left))
             {
                 return CheckIsFits(new Vector2Int(-1, 0), _positionInMaze, alreadyCheckList, maze, out positionInGleid, out gleid.StartPosition, out gleid.GleidSize, count);
             }
-            //Если клетка находится точно под глейдом, по иксу она точно не меньше,тк есть верхний иф и не больше размера глейда
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ С‚РѕС‡РЅРѕ РїРѕРґ РіР»РµР№РґРѕРј, РїРѕ РёРєСЃСѓ РѕРЅР° С‚РѕС‡РЅРѕ РЅРµ РјРµРЅСЊС€Рµ,С‚Рє РµСЃС‚СЊ РІРµСЂС…РЅРёР№ РёС„ Рё РЅРµ Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂР° РіР»РµР№РґР°
             if (_positionInMaze.y + 1 == gleid.StartPosition.y && _positionInMaze.x <= gleid.StartPosition.x + gleid.GleidSize.x)
             {
                 positionInGleid = new Vector2Int(_positionInMaze.x - gleid.StartPosition.x, -1);
@@ -177,24 +177,24 @@ namespace Generate
             }
             Vector2Int nearTopGleidPosition = SearchNearGleid(_positionInMaze + Vector2Int.up);
             nearTopGleidPosition += RandomAdd(nearTopGleidPosition, maze.seed, maze._mazeSize.x, addRange);
-            //Если клетка находится точно под верхним глейдом, по иксу она точно не меньше,тк есть верхний иф и не больше размера глейда
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ С‚РѕС‡РЅРѕ РїРѕРґ РІРµСЂС…РЅРёРј РіР»РµР№РґРѕРј, РїРѕ РёРєСЃСѓ РѕРЅР° С‚РѕС‡РЅРѕ РЅРµ РјРµРЅСЊС€Рµ,С‚Рє РµСЃС‚СЊ РІРµСЂС…РЅРёР№ РёС„ Рё РЅРµ Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂР° РіР»РµР№РґР°
             if (_positionInMaze.y + 1 == nearTopGleidPosition.y && _positionInMaze.x <= nearTopGleidPosition.x + gleid.GleidSize.x && _positionInMaze.x >= gleid.StartPosition.x)
             {
                 gleid.StartPosition = nearTopGleidPosition;
                 positionInGleid = new Vector2Int(_positionInMaze.x - gleid.StartPosition.x, -1);
                 return true;
             }
-            //Если клетка находится ниже, но не ровно под глейдом
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ РЅРёР¶Рµ, РЅРѕ РЅРµ СЂРѕРІРЅРѕ РїРѕРґ РіР»РµР№РґРѕРј
             if (_positionInMaze.y < gleid.StartPosition.y && !alreadyCheckList.Contains(alreadyCheckList[alreadyCheckList.Count - 1] - Vector2Int.up))
             {
                 return CheckIsFits(new Vector2Int(0, -1), _positionInMaze, alreadyCheckList, maze, out positionInGleid, out gleid.StartPosition, out gleidSize, count);
             }
-            //Если клетка находится сверху, но не левее начала глейда и глейд сверху мы уже проверяли
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ СЃРІРµСЂС…Сѓ, РЅРѕ РЅРµ Р»РµРІРµРµ РЅР°С‡Р°Р»Р° РіР»РµР№РґР° Рё РіР»РµР№Рґ СЃРІРµСЂС…Сѓ РјС‹ СѓР¶Рµ РїСЂРѕРІРµСЂСЏР»Рё
             if (gleid.StartPosition.y + gleid.GleidSize.y < _positionInMaze.y && !alreadyCheckList.Contains(alreadyCheckList[alreadyCheckList.Count - 1] + Vector2Int.up))
             {
                 return CheckIsFits(Vector2Int.up, _positionInMaze, alreadyCheckList, maze, out positionInGleid, out gleid.StartPosition, out gleidSize, count);
             }
-            //Если клетка находится справа, но не ниже начала глейда и глейд справа мы еще не проверяли
+            //Р•СЃР»Рё РєР»РµС‚РєР° РЅР°С…РѕРґРёС‚СЃСЏ СЃРїСЂР°РІР°, РЅРѕ РЅРµ РЅРёР¶Рµ РЅР°С‡Р°Р»Р° РіР»РµР№РґР° Рё РіР»РµР№Рґ СЃРїСЂР°РІР° РјС‹ РµС‰Рµ РЅРµ РїСЂРѕРІРµСЂСЏР»Рё
             if (gleid.StartPosition.x + gleid.GleidSize.x < _positionInMaze.x && !alreadyCheckList.Contains(alreadyCheckList[alreadyCheckList.Count - 1] + new Vector2Int(1, 0)))
             {
                 return CheckIsFits(new Vector2Int(1, 0), _positionInMaze, alreadyCheckList, maze, out positionInGleid, out gleid, count);

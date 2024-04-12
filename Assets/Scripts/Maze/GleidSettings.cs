@@ -9,14 +9,14 @@ public class GleidSettings : ScriptableObject
     [Space(15)]
     [Min(2)] public Vector2Int maxGleidSize = new Vector2Int(10, 10);
     [Space(15)]
-    [Tooltip("Ðàäèóñ ãåíåðàöèè ãëåéäîâ. ×åì áîëüøå, òåì ìåíüøå áóäåò ãëåéäîâ")]
-    //6 -  äîëæíë áûòü gleidSize
+    [Tooltip("Ð Ð°Ð´Ð¸ÑƒÑ Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð³Ð»ÐµÐ¹Ð´Ð¾Ð². Ð§ÐµÐ¼ Ð±Ð¾Ð»ÑŒÑˆÐµ, Ñ‚ÐµÐ¼ Ð¼ÐµÐ½ÑŒÑˆÐµ Ð±ÑƒÐ´ÐµÑ‚ Ð³Ð»ÐµÐ¹Ð´Ð¾Ð²")]
+    //6 -  Ð´Ð¾Ð»Ð¶Ð½Ð» Ð±Ñ‹Ñ‚ÑŒ gleidSize
     [Min(1)] public Vector2Int gleidChange = new Vector2Int(124, 182);
     [Space(15)]
-    [Tooltip("Äèàïàçîí ðàíäîìíîãî äîáàâëåíèÿ ê ïîçèöèè ãëåéäà")]
+    [Tooltip("Ð”Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½ Ñ€Ð°Ð½Ð´Ð¾Ð¼Ð½Ð¾Ð³Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ðº Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð³Ð»ÐµÐ¹Ð´Ð°")]
     [Min(0)] public Vector2Int addRange = new Vector2Int(10, 10);
     [Space(15)]
-    [Tooltip("Óäàëÿòü ëè ãðàíèöó ãëåéäà?")]
+    [Tooltip("Ð£Ð´Ð°Ð»ÑÑ‚ÑŒ Ð»Ð¸ Ð³Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ð³Ð»ÐµÐ¹Ð´Ð°?")]
     public bool isDeleteBroad;
     public bool isRandomAppear = true;
     public bool isRandomAdd = true;
@@ -26,8 +26,8 @@ public class GleidSettings : ScriptableObject
     {
         if (maxGleidSize.x > gleidChange.x)
         {
-            //EditorUtility.DisplayPopupMenu(new Rect(10, 10, 50, 50), "Áëàáëàáëà", new MenuCommand(new Object()));
-            //EditorUtility.DisplayDialog("Îøèáêà", "Ðàçìåð ãëåéäà íå ìîæåò áûòü áîëüøå ðàäèóñà ãåíåðàöèè!", "Õîðîøî, èñïðàâëþñü");
+            //EditorUtility.DisplayPopupMenu(new Rect(10, 10, 50, 50), "Ð‘Ð»Ð°Ð±Ð»Ð°Ð±Ð»Ð°", new MenuCommand(new Object()));
+            //EditorUtility.DisplayDialog("ÐžÑˆÐ¸Ð±ÐºÐ°", "Ð Ð°Ð·Ð¼ÐµÑ€ Ð³Ð»ÐµÐ¹Ð´Ð° Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð±Ð¾Ð»ÑŒÑˆÐµ Ñ€Ð°Ð´Ð¸ÑƒÑÐ° Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸!", "Ð¥Ð¾Ñ€Ð¾ÑˆÐ¾, Ð¸ÑÐ¿Ñ€Ð°Ð²Ð»ÑŽÑÑŒ");
             maxGleidSize.x = gleidChange.x;
         }
         if (maxGleidSize.y > gleidChange.y)
@@ -60,8 +60,8 @@ public class GleidSettings : ScriptableObject
         }
         if (addRange.x >= gleidChange.x - (isRandomGleidSize ? maxGleidSize.x : minGleidSize.x))
         {
-            //Debug.LogError("Äèàïàçîí ðàíäîìíîãî äîáàâëåíèÿ ê ïîçèöèè ãëåéäà äîëæåí áûòü ìåíüøå ðàäèóñà ãåíåðàöèè!");
-            //EditorUtility.DisplayDialog("Îøèáêà", "Äèàïàçîí ðàíäîìíîãî äîáàâëåíèÿ ê ïîçèöèè ãëåéäà äîëæåí áûòü ìåíüøå ðàäèóñà ãåíåðàöèè!", "Õîðîøî, èñïðàâëþñü");
+            //Debug.LogError("Ð”Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½ Ñ€Ð°Ð½Ð´Ð¾Ð¼Ð½Ð¾Ð³Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ðº Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð³Ð»ÐµÐ¹Ð´Ð° Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ð¼ÐµÐ½ÑŒÑˆÐµ Ñ€Ð°Ð´Ð¸ÑƒÑÐ° Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸!");
+            //EditorUtility.DisplayDialog("ÐžÑˆÐ¸Ð±ÐºÐ°", "Ð”Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½ Ñ€Ð°Ð½Ð´Ð¾Ð¼Ð½Ð¾Ð³Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ðº Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ Ð³Ð»ÐµÐ¹Ð´Ð° Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ð¼ÐµÐ½ÑŒÑˆÐµ Ñ€Ð°Ð´Ð¸ÑƒÑÐ° Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ð¸!", "Ð¥Ð¾Ñ€Ð¾ÑˆÐ¾, Ð¸ÑÐ¿Ñ€Ð°Ð²Ð»ÑŽÑÑŒ");
             addRange.x = gleidChange.x - (isRandomGleidSize ? maxGleidSize.x : minGleidSize.x);
         }
         if (addRange.y >= gleidChange.y - (isRandomGleidSize ? maxGleidSize.y : minGleidSize.y))

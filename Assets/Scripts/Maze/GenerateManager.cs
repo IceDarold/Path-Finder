@@ -15,15 +15,15 @@ namespace Generate
         #region MazeSettings
         [Header("Maze settings")]
         [SerializeField] private bool isGenerateMaze;
-        [Tooltip("Глобальная позиция первой клетки в лабиринте")]
+        [Tooltip("Р“Р»РѕР±Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ РїРµСЂРІРѕР№ РєР»РµС‚РєРё РІ Р»Р°Р±РёСЂРёРЅС‚Рµ")]
         [SerializeField] private Vector3 _firstWorldCoordinates;
-        [Tooltip("Позиция первой сгенерированной клетки в локальной системе координат лабиринта")]
+        [Tooltip("РџРѕР·РёС†РёСЏ РїРµСЂРІРѕР№ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅРѕР№ РєР»РµС‚РєРё РІ Р»РѕРєР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјРµ РєРѕРѕСЂРґРёРЅР°С‚ Р»Р°Р±РёСЂРёРЅС‚Р°")]
         [SerializeField] private Vector2Int _startPositionInMaze = new Vector2Int(0, 0);
-        [Tooltip("Размер прогружаемого в реальном времени лабиринта")]
+        [Tooltip("Р Р°Р·РјРµСЂ РїСЂРѕРіСЂСѓР¶Р°РµРјРѕРіРѕ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё Р»Р°Р±РёСЂРёРЅС‚Р°")]
         [SerializeField] private Vector2Int _runTimeMazeSize;
 
         [Header("Render settings")]
-        [Tooltip("Префаб клетки в лабиринте")]
+        [Tooltip("РџСЂРµС„Р°Р± РєР»РµС‚РєРё РІ Р»Р°Р±РёСЂРёРЅС‚Рµ")]
         [SerializeField] private CellPref _prefab;
         [SerializeField] private bool _offTopWalls;
         [SerializeField] private bool _offSideWalls;
@@ -32,21 +32,21 @@ namespace Generate
         private Vector3 lastUpdatePosition;
 
         [Header("UpdateSettings")]
-        [Tooltip("Обновлять лабиринт?")]
+        [Tooltip("РћР±РЅРѕРІР»СЏС‚СЊ Р»Р°Р±РёСЂРёРЅС‚?")]
         [SerializeField] private bool _isUpdate;
-        [Tooltip("Расстояние между игроком и левым концом лабиринта, при котором конец удаляется. В клетках")]
+        [Tooltip("Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РёРіСЂРѕРєРѕРј Рё Р»РµРІС‹Рј РєРѕРЅС†РѕРј Р»Р°Р±РёСЂРёРЅС‚Р°, РїСЂРё РєРѕС‚РѕСЂРѕРј РєРѕРЅРµС† СѓРґР°Р»СЏРµС‚СЃСЏ. Р’ РєР»РµС‚РєР°С…")]
         [SerializeField] private byte _allowableDistance = 10;
-        [Tooltip("Происходит обновление лабиринта постоянно или после того, как игрок отдалится от предыдущего места на updateDistance")]
+        [Tooltip("РџСЂРѕРёСЃС…РѕРґРёС‚ РѕР±РЅРѕРІР»РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р° РїРѕСЃС‚РѕСЏРЅРЅРѕ РёР»Рё РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РёРіСЂРѕРє РѕС‚РґР°Р»РёС‚СЃСЏ РѕС‚ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РјРµСЃС‚Р° РЅР° updateDistance")]
         [SerializeField] private bool _isConstUpdate;
-        [Tooltip("Расстояние между игроком и предыдущим местом обновления, при котором происходит проверка на обновление лабиринта")]
+        [Tooltip("Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РёРіСЂРѕРєРѕРј Рё РїСЂРµРґС‹РґСѓС‰РёРј РјРµСЃС‚РѕРј РѕР±РЅРѕРІР»РµРЅРёСЏ, РїСЂРё РєРѕС‚РѕСЂРѕРј РїСЂРѕРёСЃС…РѕРґРёС‚ РїСЂРѕРІРµСЂРєР° РЅР° РѕР±РЅРѕРІР»РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р°")]
         [SerializeField] private float _checkDistance;
-        [Tooltip("Обновлять рендер после генерации?")]
+        [Tooltip("РћР±РЅРѕРІР»СЏС‚СЊ СЂРµРЅРґРµСЂ РїРѕСЃР»Рµ РіРµРЅРµСЂР°С†РёРё?")]
         [SerializeField] private bool isUpdateRenderInRunTime;
         #endregion
         #region GleidsSettings
         [Header("GleidSettings")]
         [SerializeField] bool _isGenerateGleids;
-        [SerializeField] GleidSettings _gleidSettings;//Сделать появление этого только если _isGenerateGleid равно True
+        [SerializeField] GleidSettings _gleidSettings;//РЎРґРµР»Р°С‚СЊ РїРѕСЏРІР»РµРЅРёРµ СЌС‚РѕРіРѕ С‚РѕР»СЊРєРѕ РµСЃР»Рё _isGenerateGleid СЂР°РІРЅРѕ True
         #endregion
         #region BiomSettings
         [SerializeField] private bool _isGenerateBioms;
@@ -55,38 +55,38 @@ namespace Generate
         #region Debug
         [Header("Develop settings. Debug/test")]
         [Space(10)]
-        [Tooltip("Обновляет размер лабиринта на newSize")]
+        [Tooltip("РћР±РЅРѕРІР»СЏРµС‚ СЂР°Р·РјРµСЂ Р»Р°Р±РёСЂРёРЅС‚Р° РЅР° newSize")]
         [SerializeField] private bool updateSize;
         [SerializeField] private Vector2Int newSize;
         [Space(10)]
-        [Tooltip("Удаляет отображение лабиринта")]
+        [Tooltip("РЈРґР°Р»СЏРµС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р°")]
         [SerializeField] private bool deleteRender;
         private bool isRenderDeleted;
         [Space(10)]
-        [Tooltip("Обновляет отображение лабиринта")]
+        [Tooltip("РћР±РЅРѕРІР»СЏРµС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р°")]
         [SerializeField] private bool updateRender;
         [Space(10)]
-        [Tooltip("Сгенерировать лабиринт")]
+        [Tooltip("РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ Р»Р°Р±РёСЂРёРЅС‚")]
         [SerializeField] private bool generate;
         [Space(10)]
-        [Tooltip("Меняет область отображаемого лабиринта на область с позицией newPosition первой(самой маленькой по координатам) клетки")]
+        [Tooltip("РњРµРЅСЏРµС‚ РѕР±Р»Р°СЃС‚СЊ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РЅР° РѕР±Р»Р°СЃС‚СЊ СЃ РїРѕР·РёС†РёРµР№ newPosition РїРµСЂРІРѕР№(СЃР°РјРѕР№ РјР°Р»РµРЅСЊРєРѕР№ РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј) РєР»РµС‚РєРё")]
         [SerializeField] private bool editRunTimeMazePosition;
         [SerializeField] private Vector2Int newPosition;
         [Space(10)]
-        [Tooltip("Смещает область отображаемого лабиринта на distance")]
+        [Tooltip("РЎРјРµС‰Р°РµС‚ РѕР±Р»Р°СЃС‚СЊ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РЅР° distance")]
         [SerializeField] private bool transformRunTimeMaze;
         [SerializeField] private Vector2Int distance;
         [Space(10)]
-        [Tooltip("Меняет начальные координаты лабиринта в глобальном пространстве на globalPosition")]
+        [Tooltip("РњРµРЅСЏРµС‚ РЅР°С‡Р°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ Р»Р°Р±РёСЂРёРЅС‚Р° РІ РіР»РѕР±Р°Р»СЊРЅРѕРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ РЅР° globalPosition")]
         [SerializeField] private bool transformMazeStartGlobalPosition;
         [SerializeField] private Vector3 globalPosition;
         [Space(10)]
-        [Tooltip("Удаляет лабиринт")]
+        [Tooltip("РЈРґР°Р»СЏРµС‚ Р»Р°Р±РёСЂРёРЅС‚")]
         [SerializeField] private bool deleteMaze;
-        [Tooltip("Удалить вместе с лабиринтом его отображение?")]
+        [Tooltip("РЈРґР°Р»РёС‚СЊ РІРјРµСЃС‚Рµ СЃ Р»Р°Р±РёСЂРёРЅС‚РѕРј РµРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ?")]
         [SerializeField] private bool isDeleteRender;
         [Space(10)]
-        [Tooltip("Возвращает позицию в лабиринте по глобальным координатам объекта")]
+        [Tooltip("Р’РѕР·РІСЂР°С‰Р°РµС‚ РїРѕР·РёС†РёСЋ РІ Р»Р°Р±РёСЂРёРЅС‚Рµ РїРѕ РіР»РѕР±Р°Р»СЊРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј РѕР±СЉРµРєС‚Р°")]
         [SerializeField] private bool getPositionInMazeToGloballPosition;
         [SerializeField] private Vector3 objectGlobalPosition;
         [SerializeField] private Vector2Int cellPosition;
@@ -95,7 +95,7 @@ namespace Generate
         #endregion
         private void Update()
         {
-            //Проверка на то, что лабиринт вообще сгенерирован
+            //РџСЂРѕРІРµСЂРєР° РЅР° С‚Рѕ, С‡С‚Рѕ Р»Р°Р±РёСЂРёРЅС‚ РІРѕРѕР±С‰Рµ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅ
             if (isGenerateMaze)
             {
                 if (maze == null)
@@ -114,7 +114,7 @@ namespace Generate
                     }
                 }
             }
-            //Проверка на движение игрока
+            //РџСЂРѕРІРµСЂРєР° РЅР° РґРІРёР¶РµРЅРёРµ РёРіСЂРѕРєР°
             if (maze != null && _isUpdate)
             {
                 if (_isConstUpdate || (player.transform.position - lastUpdatePosition).magnitude >= _checkDistance)
@@ -132,7 +132,7 @@ namespace Generate
                     lastUpdatePosition = player.transform.position;
                 }
             }
-            //Обновление отображения
+            //РћР±РЅРѕРІР»РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
             if (maze != null && isUpdateRenderInRunTime)
             {
                 maze.UpdateRender(_offTopWalls, _offSideWalls);

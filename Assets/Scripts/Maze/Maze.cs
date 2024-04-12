@@ -9,28 +9,28 @@ namespace Generate.MazeGen
     public class Maze : Generator
     {
         /// <summary>
-        /// Плетеный ли лабиринт
+        /// РџР»РµС‚РµРЅС‹Р№ Р»Рё Р»Р°Р±РёСЂРёРЅС‚
         /// </summary>
         public bool isBraid { get; private set; }
         /// <summary>
-        /// Размер прогружаемого лабиринта
+        /// Р Р°Р·РјРµСЂ РїСЂРѕРіСЂСѓР¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р°
         /// </summary>
         public Vector2Int runTimeMazeSize { get; private set; }
         /// <summary>
-        /// Координаты в глобальном пространстве, в которых находится позиция (0, 0) лабиринта
+        /// РљРѕРѕСЂРґРёРЅР°С‚С‹ РІ РіР»РѕР±Р°Р»СЊРЅРѕРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ, РІ РєРѕС‚РѕСЂС‹С… РЅР°С…РѕРґРёС‚СЃСЏ РїРѕР·РёС†РёСЏ (0, 0) Р»Р°Р±РёСЂРёРЅС‚Р°
         /// </summary>
         public Vector3 mazeStartGlobalPosition { get; private set; }
         /// <summary>
-        /// Сгенерирован ли лабиринт в данный момент?
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅ Р»Рё Р»Р°Р±РёСЂРёРЅС‚ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚?
         /// </summary>
         public bool isGenerate { get; private set; }
         /// <summary>
-        /// Первая клетка в отображаемом лабиринте
+        /// РџРµСЂРІР°СЏ РєР»РµС‚РєР° РІ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРј Р»Р°Р±РёСЂРёРЅС‚Рµ
         /// </summary>
         public Cell runTimeStartCell { get; private set; }
         public Cell[,] mazeArray { get; private set; }
         /// <summary>
-        /// Отображен ли в данный момент лабиринт в мире
+        /// РћС‚РѕР±СЂР°Р¶РµРЅ Р»Рё РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ Р»Р°Р±РёСЂРёРЅС‚ РІ РјРёСЂРµ
         /// </summary>
         public Vector3 cellSize { get; private set; }
         //Render settings
@@ -46,10 +46,10 @@ namespace Generate.MazeGen
             isGenerate = false;
         }
         /// <summary>
-        /// Генерирует отображаемую область лабиринта
+        /// Р“РµРЅРµСЂРёСЂСѓРµС‚ РѕС‚РѕР±СЂР°Р¶Р°РµРјСѓСЋ РѕР±Р»Р°СЃС‚СЊ Р»Р°Р±РёСЂРёРЅС‚Р°
         /// </summary>
-        /// <param name="runTimeMazeSize">Размер отображаемой области лабиринта</param>
-        /// <param name="startLocalPosition">Локальные координаты начала отображаемой области</param>
+        /// <param name="runTimeMazeSize">Р Р°Р·РјРµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕР№ РѕР±Р»Р°СЃС‚Рё Р»Р°Р±РёСЂРёРЅС‚Р°</param>
+        /// <param name="startLocalPosition">Р›РѕРєР°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР°С‡Р°Р»Р° РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕР№ РѕР±Р»Р°СЃС‚Рё</param>
         /// <returns></returns>
         public bool Generate(Vector2Int runTimeMazeSize, Vector2Int startLocalPosition)
         {
@@ -67,8 +67,8 @@ namespace Generate.MazeGen
                 }
             }
             RecalculateMazeValues();
-            //Циклы идут отдельно, т.к. в методе RecalculateCellValues нужна информация о всех клетках, а если мы делаем все в одном цикле,
-            //то клетки, у которых позиция больше текущей, не будут созданы. На прозводительность это никак не влияет, т.к. действия те же
+            //Р¦РёРєР»С‹ РёРґСѓС‚ РѕС‚РґРµР»СЊРЅРѕ, С‚.Рє. РІ РјРµС‚РѕРґРµ RecalculateCellValues РЅСѓР¶РЅР° РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РІСЃРµС… РєР»РµС‚РєР°С…, Р° РµСЃР»Рё РјС‹ РґРµР»Р°РµРј РІСЃРµ РІ РѕРґРЅРѕРј С†РёРєР»Рµ,
+            //С‚Рѕ РєР»РµС‚РєРё, Сѓ РєРѕС‚РѕСЂС‹С… РїРѕР·РёС†РёСЏ Р±РѕР»СЊС€Рµ С‚РµРєСѓС‰РµР№, РЅРµ Р±СѓРґСѓС‚ СЃРѕР·РґР°РЅС‹. РќР° РїСЂРѕР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚СЊ СЌС‚Рѕ РЅРёРєР°Рє РЅРµ РІР»РёСЏРµС‚, С‚.Рє. РґРµР№СЃС‚РІРёСЏ С‚Рµ Р¶Рµ
             for (int y = 0; y < runTimeMazeSize.y; y++)
             {
                 for (int x = 0; x < runTimeMazeSize.x; x++)
@@ -77,30 +77,30 @@ namespace Generate.MazeGen
                 }
             }
             return true;
-        }//ДОБАВИТЬ ПАРАМЕТРЫ
+        }//Р”РћР‘РђР’РРўР¬ РџРђР РђРњР•РўР Р«
         /// <summary>
-        /// Смещает область отображаемого лабиринта на distance
+        /// РЎРјРµС‰Р°РµС‚ РѕР±Р»Р°СЃС‚СЊ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РЅР° distance
         /// </summary>
-        /// <param name="distance">Дистанция, на которую нужно сместить отображаемый лабиринт</param>
-        public void TransformRunTimeMaze(Vector2Int distance)//Заменить transform на "сместить"
+        /// <param name="distance">Р”РёСЃС‚Р°РЅС†РёСЏ, РЅР° РєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ СЃРјРµСЃС‚РёС‚СЊ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹Р№ Р»Р°Р±РёСЂРёРЅС‚</param>
+        public void TransformRunTimeMaze(Vector2Int distance)//Р—Р°РјРµРЅРёС‚СЊ transform РЅР° "СЃРјРµСЃС‚РёС‚СЊ"
         {
             for (int y = 0; y < runTimeMazeSize.y; y++)
             {
                 for (int x = 0; x < runTimeMazeSize.x; x++)
                 {
                     Vector2Int lastPositionInMaze = mazeArray[y, x].positionInMaze;
-                    mazeArray[y, x] = new Cell(lastPositionInMaze + distance, cellSize, this);//Переделать на переназначение клеток
+                    mazeArray[y, x] = new Cell(lastPositionInMaze + distance, cellSize, this);//РџРµСЂРµРґРµР»Р°С‚СЊ РЅР° РїРµСЂРµРЅР°Р·РЅР°С‡РµРЅРёРµ РєР»РµС‚РѕРє
                     RecalculateCellValues(mazeArray[y, x]);
                 }
             }
             RecalculateMazeValues();
         }
         /// <summary>
-        /// Возвращает ссылку на клетку с позицией position, если такая присутствует в отображаемом лабиринте
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃСЃС‹Р»РєСѓ РЅР° РєР»РµС‚РєСѓ СЃ РїРѕР·РёС†РёРµР№ position, РµСЃР»Рё С‚Р°РєР°СЏ РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РІ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРј Р»Р°Р±РёСЂРёРЅС‚Рµ
         /// </summary>
         /// <param name="position"></param>
-        /// <param name="cell">Ссылка на клетку</param>
-        /// <returns>Возвращает true, если такая клетка есть в отображаемом лабиринте и false если нет</returns>
+        /// <param name="cell">РЎСЃС‹Р»РєР° РЅР° РєР»РµС‚РєСѓ</param>
+        /// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё С‚Р°РєР°СЏ РєР»РµС‚РєР° РµСЃС‚СЊ РІ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРј Р»Р°Р±РёСЂРёРЅС‚Рµ Рё false РµСЃР»Рё РЅРµС‚</returns>
         public bool GetCellAtPositionInMaze(Vector2Int position, out Cell cell)
         {
             bool isOk = true;
@@ -119,33 +119,33 @@ namespace Generate.MazeGen
             return isOk;
         }
         /// <summary>
-        /// Обновляет все данные клетки исходя из ее positionInMaze
+        /// РћР±РЅРѕРІР»СЏРµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ РєР»РµС‚РєРё РёСЃС…РѕРґСЏ РёР· РµРµ positionInMaze
         /// </summary>
         /// <param name="cell"></param>
-        /// <param name="walls">Просчитываем ли мы необходимость активации верхних и боковых стен?</param>
-        /// <param name="globalPosition">Просчитываем ли мы глобальную позицию клетки в лабиринте</param>
+        /// <param name="walls">РџСЂРѕСЃС‡РёС‚С‹РІР°РµРј Р»Рё РјС‹ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚СЊ Р°РєС‚РёРІР°С†РёРё РІРµСЂС…РЅРёС… Рё Р±РѕРєРѕРІС‹С… СЃС‚РµРЅ?</param>
+        /// <param name="globalPosition">РџСЂРѕСЃС‡РёС‚С‹РІР°РµРј Р»Рё РјС‹ РіР»РѕР±Р°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ РєР»РµС‚РєРё РІ Р»Р°Р±РёСЂРёРЅС‚Рµ</param>
         private void RecalculateCellValues(Cell cell, bool walls = true)
         {
             if (walls)
             {
                 if (RandomChoice(cell.positionInMaze, generateData.seed, GenBoolType.sideCellsDeleteCheck, runTimeMazeSize.x))
                     cell.leftWall = false;
-                //Если мы уже сделали просчет с множеством данной клетки, то можно больше этого не делать
+                //Р•СЃР»Рё РјС‹ СѓР¶Рµ СЃРґРµР»Р°Р»Рё РїСЂРѕСЃС‡РµС‚ СЃ РјРЅРѕР¶РµСЃС‚РІРѕРј РґР°РЅРЅРѕР№ РєР»РµС‚РєРё, С‚Рѕ РјРѕР¶РЅРѕ Р±РѕР»СЊС€Рµ СЌС‚РѕРіРѕ РЅРµ РґРµР»Р°С‚СЊ
                 if (cell.isCalculateTop)
                 {
                     return;
                 }
-                //Ищем все левые и правые клетки множества
+                //РС‰РµРј РІСЃРµ Р»РµРІС‹Рµ Рё РїСЂР°РІС‹Рµ РєР»РµС‚РєРё РјРЅРѕР¶РµСЃС‚РІР°
                 List<Vector2Int> _cellsSet = new List<Vector2Int>();
-                if (cell.leftWall == false)//Это для проверки того, что наша клетка не является левым краем множества
+                if (cell.leftWall == false)//Р­С‚Рѕ РґР»СЏ РїСЂРѕРІРµСЂРєРё С‚РѕРіРѕ, С‡С‚Рѕ РЅР°С€Р° РєР»РµС‚РєР° РЅРµ СЏРІР»СЏРµС‚СЃСЏ Р»РµРІС‹Рј РєСЂР°РµРј РјРЅРѕР¶РµСЃС‚РІР°
                 {
                     Vector2Int thisCellPositionLeft = cell.positionInMaze;
-                    //Do while потому что если у клетки есть левая стена, тело цикла должно выполниться все равно
+                    //Do while РїРѕС‚РѕРјСѓ С‡С‚Рѕ РµСЃР»Рё Сѓ РєР»РµС‚РєРё РµСЃС‚СЊ Р»РµРІР°СЏ СЃС‚РµРЅР°, С‚РµР»Рѕ С†РёРєР»Р° РґРѕР»Р¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊСЃСЏ РІСЃРµ СЂР°РІРЅРѕ
                     do
                     {
                         thisCellPositionLeft.x -= 1;
                         _cellsSet.Add(thisCellPositionLeft);
-                        //Проверяем 
+                        //РџСЂРѕРІРµСЂСЏРµРј 
                         Cell updateDataCell;
                         // Debug.Log(GetCellAtPositionInMaze(thisCellPositionLeft, out updateDataCell));
                         // Debug.Log(updateDataCell);
@@ -155,7 +155,7 @@ namespace Generate.MazeGen
                         }
                     } while (RandomChoice(thisCellPositionLeft, generateData.seed, GenBoolType.sideCellsDeleteCheck, runTimeMazeSize.x));
                 }
-                //Разворачиваем множество, чтобы елементы были в правильном пордке
+                //Р Р°Р·РІРѕСЂР°С‡РёРІР°РµРј РјРЅРѕР¶РµСЃС‚РІРѕ, С‡С‚РѕР±С‹ РµР»РµРјРµРЅС‚С‹ Р±С‹Р»Рё РІ РїСЂР°РІРёР»СЊРЅРѕРј РїРѕСЂРґРєРµ
                 _cellsSet.Reverse();
                 _cellsSet.Add(cell.positionInMaze);
                 cell.isCalculateTop = true;
@@ -188,12 +188,12 @@ namespace Generate.MazeGen
                 }
                 else
                 {
-                    Debug.LogWarning("Генерация плетеного лабиринта пока не готова");
+                    Debug.LogWarning("Р“РµРЅРµСЂР°С†РёСЏ РїР»РµС‚РµРЅРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РїРѕРєР° РЅРµ РіРѕС‚РѕРІР°");
                 }
             }
         }
         /// <summary>
-        /// Обновляет все данные лабиринта: runTimeMazeSize, mazeStartGlobalPosition, isGenerate, runTimeStartCell, isRenderer
+        /// РћР±РЅРѕРІР»СЏРµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ Р»Р°Р±РёСЂРёРЅС‚Р°: runTimeMazeSize, mazeStartGlobalPosition, isGenerate, runTimeStartCell, isRenderer
         /// </summary>
         private void RecalculateMazeValues()
         {
@@ -218,10 +218,10 @@ namespace Generate.MazeGen
                 isRenderer = false;
             }
         }
-        /// <summary>Меняет область отображаемого лабиринта на область с позицией newPosition первой(самой маленькой по координатам) клетки
+        /// <summary>РњРµРЅСЏРµС‚ РѕР±Р»Р°СЃС‚СЊ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° РЅР° РѕР±Р»Р°СЃС‚СЊ СЃ РїРѕР·РёС†РёРµР№ newPosition РїРµСЂРІРѕР№(СЃР°РјРѕР№ РјР°Р»РµРЅСЊРєРѕР№ РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј) РєР»РµС‚РєРё
         /// </summary>
-        /// <param name="newPosition">Позиция первой(самой маленькой по координатам) клетки новой области</param>
-        public void EditRunTimeMazePosition(Vector2Int newPosition)//Заменить Change на "изменить"
+        /// <param name="newPosition">РџРѕР·РёС†РёСЏ РїРµСЂРІРѕР№(СЃР°РјРѕР№ РјР°Р»РµРЅСЊРєРѕР№ РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј) РєР»РµС‚РєРё РЅРѕРІРѕР№ РѕР±Р»Р°СЃС‚Рё</param>
+        public void EditRunTimeMazePosition(Vector2Int newPosition)//Р—Р°РјРµРЅРёС‚СЊ Change РЅР° "РёР·РјРµРЅРёС‚СЊ"
         {
             for (int y = 0; y < runTimeMazeSize.y; y++)
             {
@@ -234,10 +234,10 @@ namespace Generate.MazeGen
             RecalculateMazeValues();
         }
         /// <summary>
-        /// Изменяет размер отображаемого лабиринта так, что начальная клетка предыдущей области будет начальной клеткой новой
+        /// РР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРіРѕ Р»Р°Р±РёСЂРёРЅС‚Р° С‚Р°Рє, С‡С‚Рѕ РЅР°С‡Р°Р»СЊРЅР°СЏ РєР»РµС‚РєР° РїСЂРµРґС‹РґСѓС‰РµР№ РѕР±Р»Р°СЃС‚Рё Р±СѓРґРµС‚ РЅР°С‡Р°Р»СЊРЅРѕР№ РєР»РµС‚РєРѕР№ РЅРѕРІРѕР№
         /// </summary>
-        /// <param name="newSize">Новый размер. Он должен быть > 0 по каждой координате</param>
-        /// <returns>Возвращает False, если введенные данные некоректны</returns>
+        /// <param name="newSize">РќРѕРІС‹Р№ СЂР°Р·РјРµСЂ. РћРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ > 0 РїРѕ РєР°Р¶РґРѕР№ РєРѕРѕСЂРґРёРЅР°С‚Рµ</param>
+        /// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ False, РµСЃР»Рё РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РЅРµРєРѕСЂРµРєС‚РЅС‹</returns>
         public bool EditRunTimeMazeSize(Vector2Int newSize)
         {
             if (newSize.x <= 0 || newSize.y <= 0)
@@ -258,7 +258,7 @@ namespace Generate.MazeGen
             return true;
         }
         /// <summary>
-        /// Удаляет лабиринт
+        /// РЈРґР°Р»СЏРµС‚ Р»Р°Р±РёСЂРёРЅС‚
         /// </summary>
         public void RemoveMaze(bool deleteRender = true)
         {
@@ -267,7 +267,7 @@ namespace Generate.MazeGen
             RecalculateMazeValues();
         }
         /// <summary>
-        /// Обновляет отображение лабиринта в мире
+        /// РћР±РЅРѕРІР»СЏРµС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р° РІ РјРёСЂРµ
         /// </summary>
         public void UpdateRender(bool topWallsOff = false, bool sideWallsOff = false)
         {
@@ -300,7 +300,7 @@ namespace Generate.MazeGen
             isRenderer = true;
         }
         /// <summary>
-        /// Удаляет отображение лабиринта в мире
+        /// РЈРґР°Р»СЏРµС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ Р»Р°Р±РёСЂРёРЅС‚Р° РІ РјРёСЂРµ
         /// </summary>
         public void DeleteRender()
         {
@@ -313,10 +313,10 @@ namespace Generate.MazeGen
             isRenderer = false;
         }
         /// <summary>
-        /// Меняет начальные координаты лабиринта в глобальном пространстве
+        /// РњРµРЅСЏРµС‚ РЅР°С‡Р°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ Р»Р°Р±РёСЂРёРЅС‚Р° РІ РіР»РѕР±Р°Р»СЊРЅРѕРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ
         /// </summary>
-        /// <param name="newCoordinates">Новые координаты</param>
-        public void TransformMazeStartGlobalPosition(Vector3 newCoordinates)//Изменить transform на "сместить"
+        /// <param name="newCoordinates">РќРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹</param>
+        public void TransformMazeStartGlobalPosition(Vector3 newCoordinates)//РР·РјРµРЅРёС‚СЊ transform РЅР° "СЃРјРµСЃС‚РёС‚СЊ"
         {
             mazeStartGlobalPosition = newCoordinates;
             for (int y = 0; y < mazeArray.GetLength(0); y++)
@@ -328,7 +328,7 @@ namespace Generate.MazeGen
             }
         }
         /// <summary>
-        /// Возвращает позицию объекта в лабиринте по его глобальным координатам. Координату y не учитывает
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїРѕР·РёС†РёСЋ РѕР±СЉРµРєС‚Р° РІ Р»Р°Р±РёСЂРёРЅС‚Рµ РїРѕ РµРіРѕ РіР»РѕР±Р°Р»СЊРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј. РљРѕРѕСЂРґРёРЅР°С‚Сѓ y РЅРµ СѓС‡РёС‚С‹РІР°РµС‚
         /// </summary>
         /// <param name="globalPosition"></param>
         /// <returns></returns>

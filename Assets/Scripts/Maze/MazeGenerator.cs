@@ -38,13 +38,13 @@ namespace Generate
                 Maze.StringType stringType = new Maze.StringType(Maze.StringType.PositionType.None, Maze.StringType.StartType.JustStart);
                 if (i == 0)
                 {
-                    stringType.startType = Maze.StringType.StartType.StartBottomString;//Ãîâîðèì, ÷òî ýòà ñòðîêà íèæíÿÿ è ïåðâûé ðàç îáúÿâëÿåì å¸
+                    stringType.startType = Maze.StringType.StartType.StartBottomString;//âˆšÐ¾Ð²Ð¾Ñ€Ð¸Ð¼, Ñ‡Ñ‚Ð¾ ÑÑ‚Ð° ÑÑ‚Ñ€Ð¾ÐºÐ° Ð½Ð¸Ð¶Ð½Â¤Â¤ Ð¸ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ñ€Ð°Ð· Ð¾Ð±ÑŠÂ¤Ð²Ð»Â¤ÐµÐ¼ ÐµÐ„
                 }
-                else if (i == mazeSettings.runTimeGleidSize.y - 1)//Åñëè ñåé÷àñ ïîñëåäíÿÿ ñòðîêà, òî ñòðîêà áóäåò âåðõíåé
+                else if (i == mazeSettings.runTimeGleidSize.y - 1)//â‰ˆÑÐ»Ð¸ ÑÐµÐ¹Ñ‡Ð°Ñ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Â¤Â¤ ÑÑ‚Ñ€Ð¾ÐºÐ°, Ñ‚Ð¾ ÑÑ‚Ñ€Ð¾ÐºÐ° Ð±ÑƒÐ´ÐµÑ‚ Ð²ÐµÑ€Ñ…Ð½ÐµÐ¹
                 {
-                    stringType.startType = Maze.StringType.StartType.FinishTopString;//Ãîâîðèì, ÷òî ýòà ñòðîêà âåðõíÿÿ è ïåðâûé ðàç îáúÿâëÿåì å¸
+                    stringType.startType = Maze.StringType.StartType.FinishTopString;//âˆšÐ¾Ð²Ð¾Ñ€Ð¸Ð¼, Ñ‡Ñ‚Ð¾ ÑÑ‚Ð° ÑÑ‚Ñ€Ð¾ÐºÐ° Ð²ÐµÑ€Ñ…Ð½Â¤Â¤ Ð¸ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ñ€Ð°Ð· Ð¾Ð±ÑŠÂ¤Ð²Ð»Â¤ÐµÐ¼ ÐµÐ„
                 }
-                else if (i == mazeSettings.runTimeGleidSize.y / 2)//Åñëè ñåé÷àñ öåíòðàëüíàÿ ñòðîêà, òî ñòðîêà áóäåò öåíòðàëüíîé, òî åñòü ïåðâàÿ è ïîñëåäíèå êëåòêè â íåé áóäóò öåíòðàëüíàìè äëÿ áîêîâûõ ñòðîê
+                else if (i == mazeSettings.runTimeGleidSize.y / 2)//â‰ˆÑÐ»Ð¸ ÑÐµÐ¹Ñ‡Ð°Ñ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð°Â¤ ÑÑ‚Ñ€Ð¾ÐºÐ°, Ñ‚Ð¾ ÑÑ‚Ñ€Ð¾ÐºÐ° Ð±ÑƒÐ´ÐµÑ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð¾Ð¹, Ñ‚Ð¾ ÐµÑÑ‚ÑŒ Ð¿ÐµÑ€Ð²Ð°Â¤ Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð² Ð½ÐµÐ¹ Ð±ÑƒÐ´ÑƒÑ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð°Ð¼Ð¸ Ð´Ð»Â¤ Ð±Ð¾ÐºÐ¾Ð²Ñ‹Ñ… ÑÑ‚Ñ€Ð¾Ðº
                 {
                     stringType.startType = Maze.StringType.StartType.MiddleString;
                 }
@@ -57,7 +57,7 @@ namespace Generate
         {
             if (mazeSettings.isGenerateMaze && mazeSettings.isUpdate)
             {
-                //Åñëè 
+                //â‰ˆÑÐ»Ð¸ 
                 if (mazeSettings.isConstUpdate || Math.Abs(player.transform.localPosition.x - lastCellPosition.x) >= mazeSettings.prefab.transform.localScale.x
                     || Math.Abs(player.transform.localPosition.z - lastCellPosition.z) >= mazeSettings.prefab.transform.localScale.z)
                 {
@@ -68,22 +68,22 @@ namespace Generate
         }
         private void CheckDistance()
         {
-            //Åñëè èãðîê íàõîäèòñÿ íà ðàññòîÿíèå áîëüøå _allowableDistance îò öåíòðàëüíîé êëåòêè âåðõíåé ñòðîêè
+            //â‰ˆÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÂ¤ Ð½Ð° Ñ€Ð°ÑÑÑ‚Ð¾Â¤Ð½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ _allowableDistance Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð²ÐµÑ€Ñ…Ð½ÐµÐ¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸
             if (maze._topMiddleCell.cellPref.transform.position.z - player.transform.position.z >= _allowableDistance * mazeSettings.prefab.transform.localScale.z)
             {
                 maze.StringDelete(Maze.StringType.PositionType.TopString);
             }
-            //Åñëè èãðîê íàõîäèòñÿ íà ðàññòîÿíèå áîëüøå _allowableDistance îò öåíòðàëüíîé êëåòêè íèæíåé ñòðîêè
+            //â‰ˆÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÂ¤ Ð½Ð° Ñ€Ð°ÑÑÑ‚Ð¾Â¤Ð½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ _allowableDistance Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð½Ð¸Ð¶Ð½ÐµÐ¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸
             else if (player.transform.position.z - maze._bottomMiddleCell.cellPref.transform.position.z >= _allowableDistance * mazeSettings.prefab.transform.localScale.z)
             {
                 maze.StringDelete(Maze.StringType.PositionType.BottomString);
             }
-            //Åñëè èãðîê íàõîäèòñÿ íà ðàññòîÿíèå áîëüøå _allowableDistance îò öåíòðàëüíîé êëåòêè ïðàâîé ñòðîêè
+            //â‰ˆÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÂ¤ Ð½Ð° Ñ€Ð°ÑÑÑ‚Ð¾Â¤Ð½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ _allowableDistance Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð¿Ñ€Ð°Ð²Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸
             if (maze._rightMiddleCell.cellPref.transform.position.x - player.transform.position.x >= _allowableDistance * mazeSettings.prefab.transform.localScale.x)
             {
                 maze.StringDelete(Maze.StringType.PositionType.RightString);
             }
-            //Åñëè èãðîê íàõîäèòñÿ íà ðàññòîÿíèå áîëüøå _allowableDistance îò öåíòðàëüíîé êëåòêè ëåâîé ñòðîêè
+            //â‰ˆÑÐ»Ð¸ Ð¸Ð³Ñ€Ð¾Ðº Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÂ¤ Ð½Ð° Ñ€Ð°ÑÑÑ‚Ð¾Â¤Ð½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ _allowableDistance Ð¾Ñ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð»ÐµÐ²Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸
             else if ((player.transform.position.x - maze._leftMiddleCell.cellPref.transform.position.x) >= _allowableDistance * mazeSettings.prefab.transform.localScale.x)
             {
                 maze.StringDelete(Maze.StringType.PositionType.LeftString);

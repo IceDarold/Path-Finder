@@ -15,20 +15,20 @@ namespace Generate.MazeGen
         }
         public bool isGleidCell;
         /// <summary>
-        /// Есть ли у клетки верхняя стена
+        /// Р•СЃС‚СЊ Р»Рё Сѓ РєР»РµС‚РєРё РІРµСЂС…РЅСЏСЏ СЃС‚РµРЅР°
         /// </summary>
         public bool topWall { get; set; }
         /// <summary>
-        /// Есть ли у клетки левая стена
+        /// Р•СЃС‚СЊ Р»Рё Сѓ РєР»РµС‚РєРё Р»РµРІР°СЏ СЃС‚РµРЅР°
         /// </summary>
         public bool leftWall { get; set; }
         public bool isCalculateTop { get; set; }
         /// <summary>
-        /// Размер клетки
+        /// Р Р°Р·РјРµСЂ РєР»РµС‚РєРё
         /// </summary>
         public Vector3 size { get; private set; }
         /// <summary>
-        /// Лабиринт, в котором находится клетка
+        /// Р›Р°Р±РёСЂРёРЅС‚, РІ РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ РєР»РµС‚РєР°
         /// </summary>
         public Maze maze { get; private set; }
         public Cell(Vector2Int positionInMaze, Vector3 size, Maze maze)

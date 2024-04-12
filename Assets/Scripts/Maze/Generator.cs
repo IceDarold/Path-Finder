@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Базовый класс для всех генераторов
+/// Р…Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»В¤ РІСЃРµС… РіРµРЅРµСЂР°С‚РѕСЂРѕРІ
 /// </summary>
 public class Generator
 {
