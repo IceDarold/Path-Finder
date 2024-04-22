@@ -7,12 +7,13 @@ using UnityEngine;
 public class A_Star : MonoBehaviour
 {
     [SerializeField] private Grid grid;
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform start;
     [SerializeField] private Transform goal;
-    [SerializeField] private bool drawPath;
-    [SerializeField] private bool updatePathConstantly;
+    [SerializeField] private bool updatePathConstantly = true;
     [SerializeField] private bool update;
-    [SerializeField] private Color pathColor;
+    [Header("Visualization")]
+    [SerializeField] private bool drawPath = true;
+    [SerializeField] private Color pathColor = Color.magenta;
     private List<Node> path;
     private Vector3 lastPlayerPos;
     private Vector3 lastGoalPos;
@@ -20,10 +21,20 @@ public class A_Star : MonoBehaviour
 
     private void Update()
     {
-        if (updatePathConstantly && (Vector3.Distance(player.position, lastPlayerPos) > 1 || Vector3.Distance(goal.position, lastGoalPos) > 1))
+        if (start == null)
+        {
+            Debug.LogWarning("Assign field start!");
+            return;
+        }
+        if (goal == null)
+        {
+            Debug.LogWarning("Assign field goal!");
+            return;
+        }
+        if (updatePathConstantly && (Vector3.Distance(start.position, lastPlayerPos) > 1 || Vector3.Distance(goal.position, lastGoalPos) > 1))
         {
             RecalculatePath();
-            lastPlayerPos = player.position;
+            lastPlayerPos = start.position;
             lastGoalPos = goal.position;
         }
         if (update != lastUpdateValue)
@@ -38,15 +49,14 @@ public class A_Star : MonoBehaviour
     }
     private void RecalculatePath()
     {
-        Node playerNode = grid.GetNodeByWorldPosition(player.position);
+        Node playerNode = grid.GetNodeByWorldPosition(start.position);
         Node goalNode = grid.GetNodeByWorldPosition(goal.position);
         path = GetPath(playerNode, goalNode);
-
     }
     private void OnDrawGizmos()
     {
         if (!drawPath) return;
-        Gizmos.color = Color.yellow;
+        Gizmos.color = pathColor;
         if (path != null)
         {
             foreach (Node node in path)
@@ -56,7 +66,7 @@ public class A_Star : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Path does not exist");
+            //Debug.LogWarning("Path does not exist");
         }
         /*if (grid.grid != null)
         {
@@ -69,6 +79,10 @@ public class A_Star : MonoBehaviour
     }
     public List<Node> GetPath(Node startNode, Node finishNode)
     {
+        if (!startNode.walkable || !finishNode.walkable)
+        {
+            return null;
+        }
         List<Node> open = new List<Node>();
         List<Node> close = new List<Node>();
         open.Add(startNode);

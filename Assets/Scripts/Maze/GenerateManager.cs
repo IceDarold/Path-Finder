@@ -9,18 +9,18 @@ namespace Generate
 {
     public class GenerateManager : MonoBehaviour
     {
-        [Header("Same settings")]
+        [Header("General settings")]
         [SerializeField] private GameObject player;
         [SerializeField] private GenerateData _generateData;
         #region MazeSettings
         [Header("Maze settings")]
-        [SerializeField] private bool isGenerateMaze;
+        [SerializeField] private bool isGenerateMaze = true;
         [Tooltip("Глобальная позиция первой клетки в лабиринте")]
         [SerializeField] private Vector3 _firstWorldCoordinates;
         [Tooltip("Позиция первой сгенерированной клетки в локальной системе координат лабиринта")]
         [SerializeField] private Vector2Int _startPositionInMaze = new Vector2Int(0, 0);
         [Tooltip("Размер прогружаемого в реальном времени лабиринта")]
-        [SerializeField] private Vector2Int _runTimeMazeSize;
+        [SerializeField] private Vector2Int _runTimeMazeSize = new Vector2Int(10, 10);
 
         [Header("Render settings")]
         [Tooltip("Префаб клетки в лабиринте")]
@@ -31,26 +31,26 @@ namespace Generate
         private GleidsManager _gleidsManager;
         private Vector3 lastUpdatePosition;
 
-        [Header("UpdateSettings")]
+        [Header("Update Settings")]
         [Tooltip("Обновлять лабиринт?")]
-        [SerializeField] private bool _isUpdate;
+        [SerializeField] private bool _isUpdate = true;
         [Tooltip("Расстояние между игроком и левым концом лабиринта, при котором конец удаляется. В клетках")]
         [SerializeField] private byte _allowableDistance = 10;
         [Tooltip("Происходит обновление лабиринта постоянно или после того, как игрок отдалится от предыдущего места на updateDistance")]
-        [SerializeField] private bool _isConstUpdate;
+        [SerializeField] private bool _isConstUpdate = true;
         [Tooltip("Расстояние между игроком и предыдущим местом обновления, при котором происходит проверка на обновление лабиринта")]
         [SerializeField] private float _checkDistance;
         [Tooltip("Обновлять рендер после генерации?")]
-        [SerializeField] private bool isUpdateRenderInRunTime;
+        [SerializeField] private bool isUpdateRenderInRunTime = true;
         #endregion
         #region GleidsSettings
-        [Header("GleidSettings")]
+        [Header("Gleid Settings")]
         [SerializeField] bool _isGenerateGleids;
         [SerializeField] GleidSettings _gleidSettings;//Сделать появление этого только если _isGenerateGleid равно True
         #endregion
         #region BiomSettings
-        [SerializeField] private bool _isGenerateBioms;
-        [SerializeField] private BiomGenerateSettings generateBiomSettings;
+        private bool _isGenerateBioms;
+        private BiomGenerateSettings generateBiomSettings;
         #endregion
         #region Debug
         [Header("Develop settings. Debug/test")]
@@ -99,7 +99,7 @@ namespace Generate
             if (isGenerateMaze)
             {
                 if (maze == null)
-                    maze = new Maze(_generateData, _firstWorldCoordinates, _prefab);
+                    maze = new Maze(_generateData, _firstWorldCoordinates, _prefab, transform);
                 if (!maze.isGenerate)
                 {
                     maze.Generate(_runTimeMazeSize, _startPositionInMaze);

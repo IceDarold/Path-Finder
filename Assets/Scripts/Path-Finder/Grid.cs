@@ -5,21 +5,25 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public Transform player;
     public Node[,] grid;
-    public Vector3 gridWorldSize;
+    [Range(0, 10)]
     public float nodeRadius;
     public LayerMask unwalkableMask;
-    [SerializeField] private bool drawGrid;
     int gridSizeX, gridSizeY;
+    [HideInInspector]
     public float nodeDiameter;
     public bool recalculate;
+    [Header("Visualization")]
+    [SerializeField] private bool drawGrid;
     private void OnValidate()
     {
+        transform.localScale = new Vector3(
+            transform.localScale.x >= 0 ? transform.localScale.x : 0,
+            transform.localScale.y >= 0 ? transform.localScale.y : 0,
+            transform.localScale.z >= 0 ? transform.localScale.z : 0);
         nodeDiameter = nodeRadius * 2;
-        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
-        gridSizeY = Mathf.RoundToInt(gridWorldSize.z / nodeDiameter);
-        gridWorldSize = transform.localScale;
+        gridSizeX = Mathf.RoundToInt(transform.localScale.x / nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(transform.localScale.z / nodeDiameter);
     }
 
     private void Update()
@@ -37,7 +41,7 @@ public class Grid : MonoBehaviour
     private void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
-        Vector3 gridLefBottomPos = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.z / 2;
+        Vector3 gridLefBottomPos = transform.position - Vector3.right * transform.localScale.x / 2 - Vector3.forward * transform.localScale.z / 2;
         for (int y = 0; y < gridSizeY; y++)
         {
             for (int x = 0; x < gridSizeX; x++)
@@ -46,7 +50,6 @@ public class Grid : MonoBehaviour
                     Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool walkable = !Physics.CheckSphere(nodePos, nodeRadius, unwalkableMask);
                 Node newNode = new Node(walkable, nodePos);
-                Debug.Log($"{x}, {y}, {gridSizeX}, {gridSizeY}");
                 grid[x, y] = newNode;
                 if (x > 0)
                 {
@@ -63,8 +66,8 @@ public class Grid : MonoBehaviour
     }
     public Node GetNodeByWorldPosition(Vector3 position)
     {
-        float percentX = (position.x - transform.position.x + gridWorldSize.x / 2) / gridWorldSize.x;
-        float percentY = (position.z - transform.position.z + gridWorldSize.z / 2) / gridWorldSize.z;
+        float percentX = (position.x - transform.position.x + transform.localScale.x / 2) / transform.localScale.x;
+        float percentY = (position.z - transform.position.z + transform.localScale.z / 2) / transform.localScale.z;
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
         return grid[Mathf.RoundToInt(percentX * gridSizeX), Mathf.RoundToInt(percentY * gridSizeY)];

@@ -34,8 +34,9 @@ namespace Generate
         /// <param name="maze">Лабиринт</param>
         public void GenerateGleids()
         {
+            Debug.Log("Gleids are generating");
             GetGleidsStartInfo(maze.mazeArray, out startPositions, out _gleidsSizes);
-            startPositions.ToList().ForEach(pos => Debug.Log(pos));
+            startPositions.ToList().ForEach(pos => Debug.Log($"Gleids: {pos}"));
             for (int i = 0; i < startPositions.Length; i++)
             {
                 //-1 потому что для того, чтобы создать нижнюю стену глейда нужно поставить стену у всех клеток, находящихся под глейдом,

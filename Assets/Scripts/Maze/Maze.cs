@@ -37,13 +37,18 @@ namespace Generate.MazeGen
         private CellPref prefab;
         public bool isRenderer { get; private set; }
         public CellPref[,] renderList { get; private set; }
-        public Maze(GenerateData generateData, Vector3 mazeStartCoordinates, CellPref prefab, bool isBraid = false) : base(generateData)
+        /// <summary>
+        /// Parent object for cells
+        /// </summary>
+        private Transform _mazeParent;
+        public Maze(GenerateData generateData, Vector3 mazeStartCoordinates, CellPref prefab, Transform mazeParent = null, bool isBraid = false) : base(generateData)
         {
             mazeStartGlobalPosition = mazeStartCoordinates;
             this.prefab = prefab;
             this.isBraid = isBraid;
             cellSize = prefab.gameObject.transform.localScale;
             isGenerate = false;
+            _mazeParent = mazeParent;
         }
         /// <summary>
         /// Генерирует отображаемую область лабиринта
@@ -53,6 +58,7 @@ namespace Generate.MazeGen
         /// <returns></returns>
         public bool Generate(Vector2Int runTimeMazeSize, Vector2Int startLocalPosition)
         {
+            Debug.Log("Maze is generating");
             mazeArray = new Cell[runTimeMazeSize.y, runTimeMazeSize.x];
             if (isGenerate)
             {
@@ -285,7 +291,7 @@ namespace Generate.MazeGen
                     CellPref newCell;
                     if (renderList[y, x] == null)
                     {
-                        newCell = MonoBehaviour.Instantiate(prefab, position, prefab.transform.localRotation);
+                        newCell = MonoBehaviour.Instantiate(prefab, position, prefab.transform.localRotation, _mazeParent);
                         renderList[y, x] = newCell;
                     }
                     else
