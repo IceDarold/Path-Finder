@@ -1,6 +1,7 @@
 
 namespace Generate.Random
 {
+    using System;
     using Random = System.Random;
     public class NumGenerator
     {
